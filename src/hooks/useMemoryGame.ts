@@ -1,8 +1,8 @@
 export default function useMemoryGame() {
-  var MemoriaRandom: number[] = [];
-
+    
   function GenerateMemoryArray(size: number) {
     const itens = size / 2;
+    const MemoriaRandom: number[] = [];
 
     for (let posicao = 1; posicao <= size; posicao += 1) {
       let randomItem = 0;
@@ -13,6 +13,8 @@ export default function useMemoryGame() {
 
       MemoriaRandom.push(randomItem);
     }
+
+    return MemoriaRandom
   }
 
   function CheckArray(memoryArray: number[], index: number) {
@@ -24,5 +26,5 @@ export default function useMemoryGame() {
     else return false;
   }
 
-  return { MemoriaRandom, GenerateMemoryArray };
+  return { GenerateMemoryArray };
 }
