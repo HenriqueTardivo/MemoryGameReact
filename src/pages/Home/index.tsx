@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import useMemoryGame from "../../hooks/useMemoryGame";
-import ListaOptions from "../../assets/ListaOptions.json";
+import Card from "../../components/Card";
 
 export default function Home() {
   const [restart, setRestart] = useState(false);
@@ -24,10 +24,6 @@ export default function Home() {
     setIsLoading(false);
   }, [restart]);
 
-  function getEmoji(index: number) {
-    return ListaOptions.at(index);
-  }
-  console.log(MemoriaRandom);
   return (
     <>
       <Header />
@@ -35,9 +31,9 @@ export default function Home() {
         flexDir={"column"}
         align={"center"}
         bg={"preto_claro"}
-        minH="95vh"
+        minH="92vh"
         justifyContent={"start"}
-        sx={{ gridGap: 20 }}
+        sx={{ gridGap: 10 }}
       >
         <Button
           mt={30}
@@ -54,15 +50,7 @@ export default function Home() {
         ) : (
           <Grid templateColumns={"repeat(4, 1fr) "} gap={20}>
             {MemoriaRandom.map((memoryNumber) => (
-              <Box
-                as="button"
-                bg={"preto_meio"}
-                border="1px"
-                borderRadius={"10"}
-                w={40}
-              >
-                <Text fontSize="4xl">{getEmoji(memoryNumber)}</Text>
-              </Box>
+              <Card id={memoryNumber} />
             ))}
           </Grid>
         )}

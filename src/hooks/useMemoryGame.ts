@@ -1,5 +1,25 @@
+import { useState } from "react";
+
 export default function useMemoryGame() {
+  const [choosenNumber,setChoosenNumber] = useState<number[]>()
+  const [correctNumbers, setCorrectNumbers] = useState<number[]>()
+  const [hidePlaying, setHidePlaying] = useState(false)
+  
+  function pickNumber(numberChosen : number): void{
     
+    if (choosenNumber){
+      setChoosenNumber([...choosenNumber,numberChosen])
+
+      if (choosenNumber[0] === choosenNumber[1]){     //se tiver 2 numeros compara e verifica se são iguais
+        setCorrectNumbers([...choosenNumber, numberChosen])
+        setChoosenNumber([])
+        setHidePlaying(!hidePlaying)
+      }
+    } else {
+      setChoosenNumber([numberChosen])
+    }
+  }
+
   function GenerateMemoryArray(size: number) {
     const itens = size / 2;
     const MemoriaRandom: number[] = [];
@@ -26,5 +46,5 @@ export default function useMemoryGame() {
     else return false;
   }
 
-  return { GenerateMemoryArray };
+  return { GenerateMemoryArray, choosenNumber, pickNumber, correctNumbers, hidePlaying};
 }
