@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
-import useMemoryGame from "../../hooks/useMemoryGame";
+import { useMemoryGame } from "../../hooks/useMemoryGame";
 import Card from "../../components/Card";
 
 export default function Home() {
@@ -49,8 +49,8 @@ export default function Home() {
           </Center>
         ) : (
           <Grid templateColumns={"repeat(4, 1fr) "} gap={20}>
-            {MemoriaRandom.map((memoryNumber) => (
-              <Card id={memoryNumber} />
+            {MemoriaRandom.map((memoryNumber, index) => (
+              <Card pos={index} id={memoryNumber} />
             ))}
           </Grid>
         )}
